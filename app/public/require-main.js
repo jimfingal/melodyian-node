@@ -5,10 +5,7 @@ require.config({
       'jquery-ui': 'bower_components/jquery-ui/ui/jquery-ui',
       'bootstrap': 'bower_components/bootstrap/dist/js/bootstrap.min',
       'underscore' : 'bower_components/underscore/underscore',
-      'socket.io' : 'bower_components/socket.io-client/dist/socket.io.min',
-      // Comment out this line to go back to loading
-      // the non-optimized main.js source file.
-      'main': 'main-built'
+      'socket.io' : 'bower_components/socket.io-client/socket.io'
     },
     'shim': {
         'jquery': {

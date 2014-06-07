@@ -6,16 +6,16 @@ var _ = require('underscore');
 
 var argv = require('minimist')(process.argv.slice(2));
 console.dir(argv);
-//var target = argv._[0];
+var target = argv._[0] || "http://localhost:3000";
 var loglevel = argv['debug'] ? 'debug' : 'info';
 
-/*
+var CircularJSON = require('circular-json')
+
 var socket = io.connect(target);
 
 socket.on('connect', function(data) {
   console.log('connected');
 });
-*/
 
 var zmq = require('zmq');
 var sock = zmq.socket('push');
@@ -32,8 +32,8 @@ var log = bunyan.createLogger({
 );
 
 var sendMessage = function(message) {
-  sock.send(JSON.stringify(message));
-  //socket.emit('frame', message);
+  //sock.send(CircularJSON.stringify(message));
+  socket.emit('frame', CircularJSON.stringify(message));
 };
 
 

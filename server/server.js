@@ -22,11 +22,13 @@ app.get('/', function(req, res) {
 
 var server = http.createServer(app);
 var serverio = io.listen(server);
+serverio.set('log level', false);
+
 server.listen(app.get('port'));
 console.log('listening on port ' + app.get('port'));
 
 serverio.sockets.on('connection', function(socket) {
-  socket.on('send', function(data) {
+  socket.on('frame', function(data) {
       console.log(data);
       serverio.sockets.emit('receive', data);
   });

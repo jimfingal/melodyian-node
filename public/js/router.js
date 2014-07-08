@@ -1,15 +1,16 @@
-define(['underscore', 'js/led'], function(_, Led, MidiCC) {
+define(['underscore', 'js/led', 'js/sound'], function(_, Led, Sound) {
 
-    var handlers = [Led];
+    var handlers = [];
+    handlers.push(Led);
+    handlers.push(Sound);
 
     var Router = {};
 
     Router.routeMessage = function(message) {
-
+        console.log(message);
         _.each(handlers, function(handler) {
             handler.handleMessage(message)
         });
-        console.log(message);
     };
 
     return Router;

@@ -22,14 +22,23 @@ app.get('/', function(req, res) {
 
 var server = http.createServer(app);
 var serverio = io.listen(server);
-serverio.set('log level', false);
 
 server.listen(app.get('port'));
 console.log('listening on port ' + app.get('port'));
 
-serverio.sockets.on('connection', function(socket) {
-  socket.on('frame', function(data) {
-      console.log(data);
-      serverio.sockets.emit('receive', data);
-  });
+var midi = require('midi');
+var inputName = "Daemon Input 0";
+var input = new midi.input();
+
+for (var i = 0; i < input.getPortCount(); ++i) {
+  if (input.getPortName(i) == inputName) {
+    console.log('Input found: ' + input.getPortName(i));
+    console.log('Opening ' + input.getPortName(i));
+    input.openPort(i);
+  }
+}
+
+input.on('message', function(deltaTime, message) {
+  console.log('input m:' + message + ' d:' + deltaTime);
+  serverio.sockets.emit('midi', message);
 });

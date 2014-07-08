@@ -1,18 +1,19 @@
 {
-  "name": "skynetheramin",
+  "name": "worldeater",
   "version": "0.0.1",
-  "description": "One theramin to rule them all",
+  "description": "An eater of worlds",
   "private": true,
   "ignore": [
     ".jshintrc",
     "**/*.txt"
   ],
   "dependencies": {
-    "underscore": "latest",
-    "requirejs": "latest",
-    "jquery": "latest",
-    "jquery-ui": "latest",
     "bootstrap": "~3.1.1",
-    "socket.io-client": "~1.0.4"
+    "socket.io-client": "~1.0.4",
+    "underscore": "~1.6.0",
+    "requirejs": "~2.1.14",
+    "jquery": "~2.1.1",
+    "jquery-ui": "~1.11.0",
+    "tinycolor": "~1.0.0"
   }
 }
